@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="icon" type="image/jpg" href="images/yyy1.jpg">
+    <title>Pourquoi Nous Choisir - Digital DevSolutions</title>
+    <link rel="stylesheet" href="accueil.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Styles complémentaires spécifiques aux FAQ, Avis et Récompenses */
+        
+        /* Section Accordéon FAQ */
+        .faq-section {
+            margin-top: 50px;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #cbd5e1;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 24px;
+            background: none;
+            border: none;
+            outline: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #2563eb;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '−';
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: #f8fafc;
+            color: #475569;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            padding: 0 24px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 20px 24px;
+        }
+
+        /* Section Récompenses */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .award-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.08);
+        }
+
+        .award-badge-icon {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .award-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .award-org {
+            font-size: 0.9rem;
+            color: #2563eb;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .award-desc {
+            font-size: 0.88rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Section Témoignages & Avis */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+
+        .review-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-stars {
+            color: #f59e0b;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: #334155;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 14px;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0;
+        }
+
+        .author-info span {
+            font-size: 0.82rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                Digital <span>DevSolutions</span>
+            </a>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span class="hamburger-icon"></span>
+            </label>
+
+            <ul class="nav-menu">
+                <li class="nav-item has-dropdown">
+                    <a href="site-web.html" class="nav-link">Site Web</a>
+
+                </li>
+
+                <li class="nav-item has-dropdown">
+                    <a href="plateforme.html" class="nav-link">Plateforme Complète</a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a href="app-android.html" class="nav-link">App Android</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="pourquoi-nous.html" class="nav-link">Pourquoi Nous</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="demandez-devis.html" class="nav-link btn-devis">Demandez un devis</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Zone Principale -->
+    <main class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Pourquoi Choisir Digital DevSolutions ?</h1>
+            <p class="hero-subtitle">Votre partenaire de confiance pour la transformation numérique, alliant expertise technique, accompagnement de proximité et solutions sur mesure.</p>
+        </section>
+
+        <!-- Nos Engagements & Points Forts -->
+        <section class="services-section">
+            <div class="section-header">
+                <h2>Nos Valeurs & Engagements</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="services-grid">
+                <!-- 1. Expertise Technique -->
+                <article class="service-card">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Expertise Technique">
+                    </div>
+                    <div class="card-content">
+                        <h3>Développement Sur Mesure</h3>
+                        <p>Nous concevons des architectures logicielles et web évolutives adaptées précisément à votre métier, sans vous enfermer dans des solutions génériques rigides.</p>
+                    </div>
+                </article>
+
+                <!-- 2. Approche Mobile-First -->
+                <article class="service-card">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Optimisation Mobile">
+                    </div>
+                    <div class="card-content">
+                        <h3>Performance & Mobile-First</h3>
+                        <p>Chaque produit est optimisé pour une réactivité maximale sur smartphones et tablettes, garantissant un parcours utilisateur fluide et ultra-rapide.</p>
+                    </div>
+                </article>
+
+                <!-- 3. Accompagnement Local -->
+                <article class="service-card">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=800&q=80" alt="Accompagnement et Support">
+                    </div>
+                    <div class="card-content">
+                        <h3>Proximité & Support Continu</h3>
+                        <p>Basés en Tunisie, nous assurons un suivi direct et continu de vos projets. Un support technique réactif est à votre disposition pour garantir la pérennité de vos systèmes.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Section Prix & Récompenses -->
+        <section class="services-section">
+            <div class="section-header">
+                <h2>Nos Distinctions & Certification</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="awards-grid">
+                <div class="award-card">
+                    <span class="award-badge-icon">🏆</span>
+                    <h3 class="award-title">Meilleure Agence Digital 2026</h3>
+                    <div class="award-org">Tunisia Tech Excellence Awards</div>
+                    <p class="award-desc">Récompensé pour la qualité d'ergonomie et l'innovation dans le développement d'applications web et mobiles.</p>
+                </div>
+
+                <div class="award-card">
+                    <span class="award-badge-icon">⚡</span>
+                    <h3 class="award-title">Prix Innovation SaaS & ERP</h3>
+                    <div class="award-org">North Africa Digital Forum</div>
+                    <p class="award-desc">Distinction accordée à nos plateformes de gestion sur mesure pour les écoles et établissements de santé.</p>
+                </div>
+
+                <div class="award-card">
+                    <span class="award-badge-icon">⭐</span>
+                    <h3 class="award-title">Badge d'Excellence Service Client</h3>
+                    <div class="award-org">Tech Quality Assurance Label</div>
+                    <p class="award-desc">Attribué pour la réactivité, le support technique garanti et un taux de satisfaction client supérieur à 98%.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Avis Clients & Témoignages -->
+        <section class="services-section">
+            <div class="section-header">
+                <h2>Ce Que Disent Nos Clients</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">« Digital DevSolutions a transformé notre restaurant avec leur système de menu digital QR. Nos clients adorent la rapidité d'affichage et notre taux de rotation des tables a augmenté de 25%. »</p>
+                    </div>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Sonia M." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sonia M.</h4>
+                            <span>Gérante de Restaurant (Bizerte)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">« La plateforme de gestion d'école développée sur mesure répond exactement à nos exigences. Le suivi des notes, des absences et la facturation sont devenus un jeu d'enfant. »</p>
+                    </div>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Karim B." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Karim B.</h4>
+                            <span>Directeur de Centre de Formation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div>
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">« Une équipe professionnelle et très à l'écoute. Notre application Android et notre boutique en ligne communiquent parfaitement avec notre gestion de stock. Un travail impeccable ! »</p>
+                    </div>
+                    <div class="review-author">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" alt="Youssef K." class="author-avatar">
+                        <div class="author-info">
+                            <h4>Youssef K.</h4>
+                            <span>Fondateur E-Commerce</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Questions / Réponses (FAQ Accordéon) -->
+        <section class="services-section faq-section">
+            <div class="section-header">
+                <h2>Foire Aux Questions (FAQ)</h2>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">Combien de temps prend la réalisation d'un projet web ou mobile ?</button>
+                    <div class="faq-answer">
+                        <p>Les délais varient en fonction de la complexité du projet. Un site vitrine ou un menu digital prend généralement 1 à 2 semaines, tandis qu'une plateforme sur mesure ou une application Android complète nécessite entre 3 et 6 semaines.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Proposez-vous un accompagnement après le lancement du site ?</button>
+                    <div class="faq-answer">
+                        <p>Absolument ! Nous proposons des contrats de maintenance préventive et corrective, la formation de vos équipes à la gestion du système, ainsi qu'un support technique dédié pour intervenir rapidement en cas de besoin.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Les sites et applications sont-ils bien optimisés pour mobile et Google (SEO) ?</button>
+                    <div class="faq-answer">
+                        <p>Oui, tous nos développements respectent scrupuleusement les normes de développement moderne : codage propre, vitesse de chargement élevée, design 100% responsive et structure optimisée pour le référencement naturel (SEO).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Puis-je mettre à jour le contenu de mon site moi-même ?</button>
+                    <div class="faq-answer">
+                        <p>Oui, nous fournissons des panneaux d'administration simples et intuitifs vous permettant de modifier vos textes, ajouter des produits, mettre à jour des prix ou consulter vos statistiques sans aucune compétence en programmation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">Comment demander un devis gratuit pour mon projet ?</button>
+                    <div class="faq-answer">
+                        <p>Vous pouvez vous rendre sur la page <a href="demandez-devis.html" style="color: #2563eb; text-decoration: underline;">Demandez un devis</a>, remplir le formulaire explicatif ou nous contacter directement au +216 25 215 570 pour planifier un rendez-vous.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de Page -->
+    <footer class="contact-bar">
+        <div class="contact-container">
+            <span class="contact-brand">Digital DevSolutions</span>
+            <div class="contact-item">
+                📍 <span>Bizerte, Tunisie</span>
+            </div>
+            <div class="contact-item">
+                📞 <span>Contact : <a href="tel:+21625215570">+216 25 215 570</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JavaScript pour l'accordéon FAQ -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                
+                // Fermer les autres items ouverts (optionnel)
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                    }
+                });
+
+                // Basculer l'état de l'item cliqué
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

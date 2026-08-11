@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demandez un Devis - Digital DevSolutions</title>
+            <link rel="icon" type="image/jpg" href="images/yyy1.jpg">
+    <link rel="stylesheet" href="accueil.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Styles spécifiques au formulaire de devis */
+        .devis-section {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 36px 32px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        .devis-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .form-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #0f172a;
+            background-color: #f8fafc;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .services-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .checkbox-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-card:hover {
+            border-color: #2563eb;
+            background-color: #f0f6ff;
+        }
+
+        .checkbox-card input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #334155;
+            cursor: pointer;
+        }
+
+        .other-service-input {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .other-service-input.active {
+            display: block;
+        }
+
+        .btn-submit-devis {
+            background-color: #2563eb;
+            color: #ffffff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .btn-submit-devis:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-submit-devis:active {
+            transform: translateY(0);
+        }
+
+        .info-contact-card {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .info-contact-text h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin: 0 0 4px 0;
+        }
+
+        .info-contact-text p {
+            font-size: 0.9rem;
+            color: #1e3a8a;
+            margin: 0;
+        }
+
+        .info-contact-btn {
+            background-color: #1e40af;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .info-contact-btn:hover {
+            background-color: #1e3a8a;
+        }
+
+        @media (max-width: 600px) {
+            .devis-section {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                Digital <span>DevSolutions</span>
+            </a>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span class="hamburger-icon"></span>
+            </label>
+
+            <ul class="nav-menu">
+                <li class="nav-item has-dropdown">
+                    <a href="site-web.html" class="nav-link">Site Web</a>
+
+                </li>
+
+                <li class="nav-item has-dropdown">
+                    <a href="plateforme.html" class="nav-link">Plateforme Complète</a>
+
+                </li>
+
+                <li class="nav-item">
+                    <a href="app-android.html" class="nav-link">App Android</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="pourquoi-nous.html" class="nav-link">Pourquoi Nous</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="demandez-devis.html" class="nav-link btn-devis">Demandez un devis</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Zone Principale -->
+    <main class="main-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Demandez Votre Devis Gratuit</h1>
+            <p class="hero-subtitle">Parlez-nous de votre projet. Nous analyserons vos besoins et vous recontacterons sous 24h avec une proposition personnalisée.</p>
+        </section>
+
+        <!-- Formulaire de Devis -->
+        <section class="devis-section">
+            <form action="#" method="POST" class="devis-form" onsubmit="event.preventDefault(); alert('Votre demande de devis a été envoyée avec succès ! Notre équipe vous recontactera sous 24h.');">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nom" class="form-label">Nom & Prénom *</label>
+                        <input type="text" id="nom" name="nom" class="form-input" placeholder="Ex: Habib Zamouri" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="entreprise" class="form-label">Nom de l'entreprise / Organisme</label>
+                        <input type="text" id="entreprise" name="entreprise" class="form-input" placeholder="Ex: Digital Solutions SARL">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telephone" class="form-label">Téléphone *</label>
+                        <input type="tel" id="telephone" name="telephone" class="form-input" placeholder="+216 25 215 570" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Adresse E-mail *</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="exemple@domaine.com" required>
+                    </div>
+                </div>
+
+                <!-- Liste des Services Souhaités -->
+                <div class="form-group">
+                    <label class="form-label">Service(s) Souhaité(s) *</label>
+                    <div class="services-checkboxes">
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="restaurant-menu-qr">
+                            <span class="checkbox-label">🍔 Restaurant & Menu QR Code</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="site-agence-vitrine">
+                            <span class="checkbox-label">🏢 Site Agence & Entreprise</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="boutique-ecommerce">
+                            <span class="checkbox-label">🛒 Boutique E-Commerce</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="gestion-ecole">
+                            <span class="checkbox-label">🎓 Plateforme Gestion École</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="cabinet-medical">
+                            <span class="checkbox-label">🩺 Gestion Cabinet Médical</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="location-voitures">
+                            <span class="checkbox-label">🚗 Agence Location de Voitures</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="immobilier-booking">
+                            <span class="checkbox-label">🏨 Réservation Hôtel / Immobilier</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="app-android-mobile">
+                            <span class="checkbox-label">📱 Application Mobile Android</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" name="services[]" value="maintenance-hebergement">
+                            <span class="checkbox-label">🛠️ Maintenance & Hébergement</span>
+                        </label>
+                        <label class="checkbox-card">
+                            <input type="checkbox" id="chk-autre" name="services[]" value="autre">
+                            <span class="checkbox-label">✨ Autre projet spécifique</span>
+                        </label>
+                    </div>
+
+                    <!-- Champ dynamique pour "Autre" -->
+                    <div id="other-service-wrapper" class="other-service-input">
+                        <input type="text" id="autre_service" name="autre_service" class="form-input" placeholder="Précisez le type de projet ou service souhaité...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="delai" class="form-label">Délai Souhaité</label>
+                    <select id="delai" name="delai" class="form-select">
+                        <option value="">Sélectionnez un délai</option>
+                        <option value="urgente">Urgent (Moins de 2 semaines)</option>
+                        <option value="standard">Standard (2 à 4 semaines)</option>
+                        <option value="flexible">Flexible (1 à 2 mois)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="form-label">Description du Projet *</label>
+                    <textarea id="description" name="description" class="form-textarea" placeholder="Décrivez brièvement vos attentes, vos objectifs et toute fonctionnalité spécifique nécessaire..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit-devis">Envoyer ma demande de devis</button>
+
+            </form>
+
+            <!-- Box Contact Direct -->
+            <div class="info-contact-card">
+                <div class="info-contact-text">
+                    <h4>Vous préférez un contact direct ?</h4>
+                    <p>Appelez-nous ou envoyez-nous un message WhatsApp pour une réponse immédiate.</p>
+                </div>
+                <a href="tel:+21625215570" class="info-contact-btn">📞 +216 25 215 570</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pied de Page -->
+    <footer class="contact-bar">
+        <div class="contact-container">
+            <span class="contact-brand">Digital DevSolutions</span>
+            <div class="contact-item">
+                📍 <span>Bizerte, Tunisie</span>
+            </div>
+            <div class="contact-item">
+                📞 <span>Contact : <a href="tel:+21625215570">+216 25 215 570</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script pour afficher le champ texte si 'Autre' est coché -->
+    <script>
+        const chkAutre = document.getElementById('chk-autre');
+        const otherWrapper = document.getElementById('other-service-wrapper');
+
+        chkAutre.addEventListener('change', function() {
+            if (this.checked) {
+                otherWrapper.classList.add('active');
+            } else {
+                otherWrapper.classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- SDK Supabase (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Script de liaison du formulaire -->
+    <script src="devis.js"></script>
+
+
+    <!-- Modal de Confirmation UI -->
+<div id="success-modal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+        <h3 class="modal-title">Demande Envoyée !</h3>
+        <p class="modal-text">
+            Merci ! Votre demande de devis a été transmise avec succès. Notre équipe étudie votre projet et vous recontactera sous <strong>24 heures</strong>.
+        </p>
+        <button id="modal-close-btn" class="modal-btn">D'accord, parfait</button>
+    </div>
+</div>
+
+</body>
+
+</body>
+</html>
